@@ -3,9 +3,9 @@ import {StyleSheet, Text, View} from 'react-native';
 
 const ScreenLayout = ({navigation}) => {
 
-    // useLayoutEffect(() => {
-    //     navigation.setOptions({title: 'Updated!'})
-    // }, [navigation])
+    useLayoutEffect(() => {
+        navigation.setOptions({title: 'New Title'})
+    }, [navigation])
 
     const children = (
         <View style={styles.subMain}>
