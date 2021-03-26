@@ -7,6 +7,7 @@ import ComponentScreen from "./src/screens/ComponentScreen";
 import ListScreen from "./src/screens/ListScreen";
 import ScreenLayout from "./src/screens/ScreenLayout";
 import Markets from "./src/exemples/market/screens/Markets";
+import PracticeFlexBox from "./src/screens/PracticeFlexBox";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,11 @@ const App = () => {
                     name="Markets"
                     component={Markets}
                     options={{title: 'Markets'}}
+                />
+                <Stack.Screen
+                    name="PracticeFlexBox"
+                    component={PracticeFlexBox}
+                    options={{title: 'Practice Flex Box'}}
                 />
             </Stack.Navigator>
         </NavigationContainer>

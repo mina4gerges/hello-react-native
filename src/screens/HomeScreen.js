@@ -8,23 +8,23 @@ const HomeScreen = ({navigation: {navigate}}) => {
         <View style={styles.main}>
             <Button
                 title='Market'
-                style={styles.button}
                 onPress={() => navigate('Markets')}
             />
             <Button
                 title='Screen Layout'
-                style={styles.button}
                 onPress={() => navigate('ScreenLayout')}
             />
             <Button
                 title='List Screen'
-                style={styles.button}
                 onPress={() => navigate('ListScreen')}
             />
             <Button
                 title='Component Screen'
-                style={styles.button}
                 onPress={() => navigate('ComponentScreen')}
+            />
+            <Button
+                title='Practice Flex Box'
+                onPress={() => navigate('PracticeFlexBox')}
             />
         </View>
     );
