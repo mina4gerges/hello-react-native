@@ -1,14 +1,15 @@
 import React from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-const ComponentScreen = ({ navigation }) => {
+const ComponentScreen = ({navigation}) => {
+
     return <View>
         <Text style={styles.text}>
             hello from Component Search
         </Text>
 
         <Button
-            onPress={() => navigation.navigate('HomeScreen')}
+            onPress={() => navigation.navigate('Home')}
             title='Go To Components Demo'
         />
 

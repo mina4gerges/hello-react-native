@@ -1,27 +1,30 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useLayoutEffect} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
-const InputScreen = () => {
+const ScreenLayout = ({navigation}) => {
+
+    // useLayoutEffect(() => {
+    //     navigation.setOptions({title: 'Updated!'})
+    // }, [navigation])
 
     const children = (
         <View style={styles.subMain}>
             <Text style={styles.text}>
                 A
             </Text>
-            {/*<Text style={{ ...styles.text, alignSelf: 'flex-start',position:'absolute' }}>*/}
-            <Text style={{ ...styles.text, alignSelf: 'flex-start' }}>
+            <Text style={{...styles.text, alignSelf: 'flex-start'}}>
                 B
             </Text>
             <Text style={styles.text}>
                 C
             </Text>
-            <Text style={{ ...styles.text, flex: 3, alignSelf: 'flex-start', bottom: 10, backgroundColor: 'yellow' }}>
+            <Text style={{...styles.text, flex: 3, alignSelf: 'flex-start', bottom: 10, backgroundColor: 'yellow'}}>
                 D
             </Text>
             <Text style={styles.text}>
                 E
             </Text>
-            <Text style={{ ...styles.text, alignSelf: 'flex-start' }}>
+            <Text style={{...styles.text, alignSelf: 'flex-start'}}>
                 F
             </Text>
             <Text style={styles.text}>
@@ -62,5 +65,5 @@ const styles = StyleSheet.create({
     }
 })
 
-export default InputScreen;
+export default ScreenLayout;
 
