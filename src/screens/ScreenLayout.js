@@ -43,7 +43,7 @@ const ScreenLayout = ({navigation}) => {
 
 const styles = StyleSheet.create({
     main: {
-        height: '100%',
+        flex: 1,
         borderWidth: 3,
         borderColor: 'blue',
         justifyContent: 'space-around',

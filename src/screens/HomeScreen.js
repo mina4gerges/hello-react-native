@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, StyleSheet, View} from "react-native";
 import ListScreen from "./ListScreen";
-import ComponentScreen from "./ComponentScreen";
+import ButtonScreen from "./ButtonScreen";
 
 const HomeScreen = ({navigation: {navigate}}) => {
     return (
@@ -19,12 +19,16 @@ const HomeScreen = ({navigation: {navigate}}) => {
                 onPress={() => navigate('ListScreen')}
             />
             <Button
-                title='Component Screen'
-                onPress={() => navigate('ComponentScreen')}
+                title='Button Screen'
+                onPress={() => navigate('ButtonScreen')}
             />
             <Button
                 title='Practice Flex Box'
                 onPress={() => navigate('PracticeFlexBox')}
+            />
+            <Button
+                title='Practice Style'
+                onPress={() => navigate('PracticeStyle')}
             />
         </View>
     );

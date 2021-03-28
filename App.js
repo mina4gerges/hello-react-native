@@ -1,53 +1,20 @@
 import React from 'react';
+import {View, StyleSheet} from 'react-native';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import HomeScreen from './src/screens/HomeScreen';
-import ComponentScreen from "./src/screens/ComponentScreen";
-import ListScreen from "./src/screens/ListScreen";
-import ScreenLayout from "./src/screens/ScreenLayout";
-import Markets from "./src/exemples/market/screens/Markets";
-import PracticeFlexBox from "./src/screens/PracticeFlexBox";
-
-const Stack = createStackNavigator();
+import Routes from "./src/Routes";
 
 const App = () => {
     return (
-        <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen
-                    name="Home"
-                    component={HomeScreen}
-                    options={{title: 'Home'}}
-                />
-                <Stack.Screen
-                    name="ComponentScreen"
-                    component={ComponentScreen}
-                    options={{title: 'Component Screen'}}
-                />
-                <Stack.Screen
-                    name="ListScreen"
-                    component={ListScreen}
-                    options={{title: 'List Screen'}}
-                />
-                <Stack.Screen
-                    name="ScreenLayout"
-                    component={ScreenLayout}
-                    options={{title: 'Screen Layout'}}
-                />
-                <Stack.Screen
-                    name="Markets"
-                    component={Markets}
-                    options={{title: 'Markets'}}
-                />
-                <Stack.Screen
-                    name="PracticeFlexBox"
-                    component={PracticeFlexBox}
-                    options={{title: 'Practice Flex Box'}}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
+        <View style={styles.app}>
+            <Routes/>
+        </View>
     )
 }
+
+const styles = StyleSheet.create({
+    app: {
+        flex: 1,
+    }
+})
 
 export default App;
