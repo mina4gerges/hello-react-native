@@ -2,8 +2,14 @@ import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import {createStore, combineReducers} from "redux";
+import {Provider} from "react-redux";
+// !This package is used ONLY for debugging.
+// !It should be removed when removing the app
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 import Routes from "./src/Routes";
+import mealsReducer from "./src/store/reducers/meals";
 
 const fetchFonts = () => {
     return Font.loadAsync({
@@ -11,6 +17,12 @@ const fetchFonts = () => {
         'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
     })
 }
+
+const rootReducer = combineReducers({
+    meals: mealsReducer,
+})
+
+const store = createStore(rootReducer, composeWithDevTools());
 
 const App = () => {
 
@@ -27,9 +39,11 @@ const App = () => {
     }
 
     return (
-        <View style={styles.app}>
-            <Routes/>
-        </View>
+        <Provider store={store}>
+            <View style={styles.app}>
+                <Routes/>
+            </View>
+        </Provider>
     )
 }
 

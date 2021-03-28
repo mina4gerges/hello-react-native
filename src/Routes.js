@@ -10,6 +10,7 @@ import Markets from "./exemples/market/screens/Markets";
 import PracticeFlexBox from "./screens/PracticeFlexBox";
 import ButtonScreen from "./screens/ButtonScreen";
 import PracticeStyle from "./screens/PracticeStyle";
+import MealsScreen from "./screens/MealsScreen";
 
 const Stack = createStackNavigator();
 
@@ -51,6 +52,11 @@ const Routes = () => {
                     name="PracticeStyle"
                     component={PracticeStyle}
                     options={{title: 'Practice Style'}}
+                />
+                <Stack.Screen
+                    name="MealsScreen"
+                    component={MealsScreen}
+                    options={{title: 'Meals Screen'}}
                 />
             </Stack.Navigator>
         </NavigationContainer>

@@ -30,6 +30,10 @@ const HomeScreen = ({navigation: {navigate}}) => {
                 title='Practice Style'
                 onPress={() => navigate('PracticeStyle')}
             />
+            <Button
+                title='Meals Screen'
+                onPress={() => navigate('MealsScreen')}
+            />
         </View>
     );
 };
