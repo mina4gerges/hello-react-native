@@ -3,6 +3,7 @@ import {View, Text, TouchableWithoutFeedback, Alert, Keyboard, StyleSheet} from 
 import TextInputComp from "../components/TextInputComp";
 import ButtonComp from "../components/ButtonComp";
 import DefaultStyle from "../constants/default-style";
+import ImageComp from "../components/ImageComp";
 
 const PracticeStyle = () => {
 
@@ -27,8 +28,13 @@ const PracticeStyle = () => {
                 <Text style={DefaultStyle.titleText}>
                     Hello from StartGameScreen
                 </Text>
+                <Text style={DefaultStyle.titleText} numberOfLines={1} ellipsizeMode='tail'>
+                    This text will never wrap into a new line, instead it will be cut off like this if it is too lon...
+                </Text>
                 <TextInputComp placeholder='Type your name here'/>
                 <ButtonComp label='Show Alert' onButtonPress={onButtonPress}/>
+                <ImageComp
+                    uri={'https://media.cntraveler.com/photos/5e0671381334d900088b0a27/16:9/w_1600%2Cc_limit/Switzerland-winter-wonderlands-GettyImages-898687414.jpg'}/>
             </View>
         </TouchableWithoutFeedback>
     )
