@@ -1,5 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from "react-native";
+import colors from "../constants/colors";
 
 const ButtonComp = ({label, onButtonPress}) => {
     return (
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
         // Only property for IOS
         shadowRadius: 8,
         shadowOpacity: 0.8,
-        shadowColor: 'red',
+        shadowColor: colors.primary,
         shadowOffset: {width: 0, height: 2},
 
         // Only property for Android:
