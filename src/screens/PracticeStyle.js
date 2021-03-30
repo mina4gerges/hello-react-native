@@ -1,7 +1,6 @@
 import React, {useCallback} from 'react';
 import {
     View,
-    Text,
     TouchableWithoutFeedback,
     Alert,
     ScrollView,
@@ -11,8 +10,8 @@ import {
 } from 'react-native';
 import TextInputComp from "../components/TextInputComp";
 import ButtonComp from "../components/ButtonComp";
-import DefaultStyle from "../constants/default-style";
 import ImageComp from "../components/ImageComp";
+import TextComp from "../components/TextComp";
 
 const PracticeStyle = () => {
 
@@ -36,13 +35,12 @@ const PracticeStyle = () => {
             <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={0}>
                 <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                     <View style={styles.startGameScreen}>
-                        <Text style={DefaultStyle.titleText}>
-                            Hello from StartGameScreen
-                        </Text>
-                        <Text style={DefaultStyle.titleText} numberOfLines={1} ellipsizeMode='tail'>
-                            This text will never wrap into a new line, instead it will be cut off like this if it is too
-                            lon...
-                        </Text>
+                        <TextComp text='Hello from StartGameScreen'/>
+                        <TextComp
+                            numberOfLines={1}
+                            ellipsizeMode='tail'
+                            text='This text will never wrap into a new line, instead it will be cut off like this if it'
+                        />
                         <TextInputComp placeholder='Type your name here' keyboardType='numeric'/>
                         <ButtonComp label='Show Alert' onButtonPress={onButtonPress}/>
                         <View style={styles.buttonGroup}>
