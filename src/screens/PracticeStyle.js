@@ -1,12 +1,13 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
     View,
     TouchableWithoutFeedback,
     Alert,
     ScrollView,
-    Keyboard,
     KeyboardAvoidingView,
-    StyleSheet
+    Keyboard,
+    StyleSheet,
+    Dimensions
 } from 'react-native';
 import TextInputComp from "../components/TextInputComp";
 import ButtonComp from "../components/ButtonComp";
@@ -14,6 +15,8 @@ import ImageComp from "../components/ImageComp";
 import TextComp from "../components/TextComp";
 
 const PracticeStyle = () => {
+
+    const [height, setHeight] = useState(Dimensions.get('window').height);
 
     const onButtonPress = useCallback(() => {
         Alert.alert(
@@ -30,11 +33,19 @@ const PracticeStyle = () => {
             }])
     }, []);
 
+    useEffect(() => {
+        const updateHeight = () => setHeight(Dimensions.get('window').height);
+
+        Dimensions.addEventListener('change', updateHeight);
+
+        return () => Dimensions.removeEventListener('change', updateHeight);
+    })
+
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView style={styles.container}>
             <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={0}>
                 <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-                    <View style={styles.startGameScreen}>
+                    <View style={{...styles.startGameScreen, height}}>
                         <TextComp text='Hello from StartGameScreen'/>
                         <TextComp
                             numberOfLines={1}
@@ -58,7 +69,6 @@ const PracticeStyle = () => {
                         <ImageComp
                             uri={'https://media.cntraveler.com/photos/5e0671381334d900088b0a27/16:9/w_1600%2Cc_limit/Switzerland-winter-wonderlands-GettyImages-898687414.jpg'}
                         />
-
                     </View>
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
@@ -68,12 +78,12 @@ const PracticeStyle = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#aaa'
+        backgroundColor: 'grey',
     },
     startGameScreen: {
-        flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#aaa',
     },
     buttonGroup: {
         flexDirection: 'row'
