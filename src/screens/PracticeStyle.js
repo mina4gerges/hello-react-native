@@ -64,16 +64,14 @@ const PracticeStyle = () => {
             </KeyboardAvoidingView>
         </ScrollView>
     )
-
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: '#aaa'
     },
     startGameScreen: {
-        height: '100%',
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
