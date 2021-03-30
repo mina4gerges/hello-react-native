@@ -1,5 +1,14 @@
-import React from 'react';
-import {View, Text, TouchableWithoutFeedback, Alert, Keyboard, StyleSheet} from 'react-native';
+import React, {useCallback} from 'react';
+import {
+    View,
+    Text,
+    TouchableWithoutFeedback,
+    Alert,
+    ScrollView,
+    Keyboard,
+    KeyboardAvoidingView,
+    StyleSheet
+} from 'react-native';
 import TextInputComp from "../components/TextInputComp";
 import ButtonComp from "../components/ButtonComp";
 import DefaultStyle from "../constants/default-style";
@@ -7,7 +16,7 @@ import ImageComp from "../components/ImageComp";
 
 const PracticeStyle = () => {
 
-    const onButtonPress = () => {
+    const onButtonPress = useCallback(() => {
         Alert.alert(
             "Hello I am title",
             "Me, I am a message",
@@ -20,33 +29,58 @@ const PracticeStyle = () => {
                 style: 'cancel',
                 onPress: () => console.log("I pressed cancel")
             }])
-    };
+    }, []);
 
     return (
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-            <View style={styles.startGameScreen}>
-                <Text style={DefaultStyle.titleText}>
-                    Hello from StartGameScreen
-                </Text>
-                <Text style={DefaultStyle.titleText} numberOfLines={1} ellipsizeMode='tail'>
-                    This text will never wrap into a new line, instead it will be cut off like this if it is too lon...
-                </Text>
-                <TextInputComp placeholder='Type your name here'/>
-                <ButtonComp label='Show Alert' onButtonPress={onButtonPress}/>
-                <ImageComp
-                    uri={'https://media.cntraveler.com/photos/5e0671381334d900088b0a27/16:9/w_1600%2Cc_limit/Switzerland-winter-wonderlands-GettyImages-898687414.jpg'}/>
-            </View>
-        </TouchableWithoutFeedback>
+        <ScrollView contentContainerStyle={styles.container}>
+            <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={0}>
+                <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                    <View style={styles.startGameScreen}>
+                        <Text style={DefaultStyle.titleText}>
+                            Hello from StartGameScreen
+                        </Text>
+                        <Text style={DefaultStyle.titleText} numberOfLines={1} ellipsizeMode='tail'>
+                            This text will never wrap into a new line, instead it will be cut off like this if it is too
+                            lon...
+                        </Text>
+                        <TextInputComp placeholder='Type your name here' keyboardType='numeric'/>
+                        <ButtonComp label='Show Alert' onButtonPress={onButtonPress}/>
+                        <View style={styles.buttonGroup}>
+                            <ButtonComp
+                                onButtonPress={() => {
+                                }}
+                                label='First button'
+                            />
+                            <ButtonComp
+                                onButtonPress={() => {
+                                }}
+                                label='Second button'
+                            />
+                        </View>
+                        <ImageComp
+                            uri={'https://media.cntraveler.com/photos/5e0671381334d900088b0a27/16:9/w_1600%2Cc_limit/Switzerland-winter-wonderlands-GettyImages-898687414.jpg'}
+                        />
+
+                    </View>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+        </ScrollView>
     )
 
 }
 
 const styles = StyleSheet.create({
-    startGameScreen: {
+    container: {
         flex: 1,
+        backgroundColor: '#aaa'
+    },
+    startGameScreen: {
+        height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#aaa'
+    },
+    buttonGroup: {
+        flexDirection: 'row'
     }
 });
 

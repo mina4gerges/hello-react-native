@@ -1,10 +1,21 @@
-import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from "react-native";
+import React, {useEffect, useState} from 'react';
+import {TouchableOpacity, Text, Dimensions, StyleSheet} from "react-native";
 import colors from "../constants/colors";
 
 const ButtonComp = ({label, onButtonPress}) => {
+
+    const [width, setWidth] = useState(Dimensions.get('window').width / 3);
+
+    useEffect(() => {
+        const updateWidth = () => setWidth(Dimensions.get('window').width / 3);
+
+        Dimensions.addEventListener('change', updateWidth);
+
+        return () => Dimensions.removeEventListener('change', updateWidth);
+    })
+
     return (
-        <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={onButtonPress}>
+        <TouchableOpacity style={{...styles.button, width}} activeOpacity={0.8} onPress={onButtonPress}>
             <Text>
                 {label}
             </Text>
