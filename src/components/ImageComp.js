@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, StyleSheet} from "react-native";
+import {View, Image, Dimensions, StyleSheet} from "react-native";
 
 const ImageComp = ({uri, source}) => {
     return (
@@ -14,16 +14,18 @@ const ImageComp = ({uri, source}) => {
     )
 }
 
+const {width} = Dimensions.get('window');
+
 const styles = StyleSheet.create({
     container: {
         borderWidth: 1,
-        borderRadius: 300,
+        borderRadius: width * 0.7 / 2,
         overflow: 'hidden',
         borderColor: 'black',
     },
     image: {
-        width: 300,
-        height: 300,
+        width: width * 0.7,
+        height: width * 0.7,
     }
 })
 
