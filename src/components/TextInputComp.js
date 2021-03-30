@@ -1,7 +1,13 @@
 import React, {useState} from 'react';
 import {TextInput, StyleSheet} from 'react-native';
 
-const TextInputComp = ({returnKeyType = 'next', autoFocus = false, placeholder, keyboardType = 'default'}) => {
+const TextInputComp = ({
+                           returnKeyType = 'next',
+                           autoCapitalize = 'none',
+                           keyboardType = 'default',
+                           autoFocus = false,
+                           placeholder
+                       }) => {
 
     const [textValue, setTextValue] = useState('');
 
@@ -9,14 +15,15 @@ const TextInputComp = ({returnKeyType = 'next', autoFocus = false, placeholder, 
 
     return (
         <TextInput
-            autoFocus={autoFocus}
-            autoCapitalize='none'
             style={styles.textInput}
             onChangeText={onChangeText}
+
             value={textValue}
+            autoFocus={autoFocus}
             placeholder={placeholder}
             keyboardType={keyboardType}
             returnKeyType={returnKeyType}
+            autoCapitalize={autoCapitalize}
         />
     )
 }
