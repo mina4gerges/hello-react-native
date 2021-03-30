@@ -15,6 +15,8 @@ const TextInputComp = ({
 
     return (
         <TextInput
+            autoCorrect={false}
+            returnKeyLabel='next'
             style={styles.textInput}
             onChangeText={onChangeText}
 
