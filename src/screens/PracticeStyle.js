@@ -42,9 +42,13 @@ const PracticeStyle = () => {
     })
 
     return (
-        <ScrollView style={styles.container}>
-            <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={0}>
-                <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <KeyboardAvoidingView
+            style={{flex: 1}}
+            behavior={Platform.OS === 'ios' ? "padding" : null}
+            keyboardVerticalOffset={Platform.select({android: 500, ios: 0})}
+        >
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                <ScrollView style={styles.container}>
                     <View style={{...styles.startGameScreen, height}}>
                         <TextComp text='Hello from StartGameScreen'/>
                         <TextComp
@@ -69,10 +73,11 @@ const PracticeStyle = () => {
                         <ImageComp
                             uri={'https://media.cntraveler.com/photos/5e0671381334d900088b0a27/16:9/w_1600%2Cc_limit/Switzerland-winter-wonderlands-GettyImages-898687414.jpg'}
                         />
+                        <TextInputComp placeholder='Type your name here' keyboardType='numeric'/>
                     </View>
-                </TouchableWithoutFeedback>
-            </KeyboardAvoidingView>
-        </ScrollView>
+                </ScrollView>
+            </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
     )
 }
 
