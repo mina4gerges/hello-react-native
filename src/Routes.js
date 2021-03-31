@@ -15,6 +15,7 @@ import PracticeFlexBox from "./screens/PracticeFlexBox";
 import ButtonScreen from "./screens/ButtonScreen";
 import PracticeStyle from "./screens/PracticeStyle";
 import MealsScreen from "./screens/MealsScreen";
+import FilterScreen from "./screens/FilterScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -58,6 +59,18 @@ const HomeStack = () => {
                 options={{title: 'Practice Style'}}
             />
             <Stack.Screen
+                name="ButtonScreen"
+                component={ButtonScreen}
+                initialParams={{id: 42}}
+                options={{
+                    headerTitle: 'Button Screen',
+                    headerStyle: {
+                        backgroundColor: Platform.OS === 'ios' ? 'white' : 'red'
+                    },
+                    headerTintColor: Platform.OS === 'ios' ? 'red' : 'white'
+                }}
+            />
+            <Stack.Screen
                 name="MealsScreen"
                 component={MealsScreen}
                 options={{title: 'Meals Screen'}}
@@ -94,20 +107,27 @@ const MarketStack = () => {
     )
 }
 
-const ButtonStack = () => {
+const FilterStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name="ButtonScreen"
-                component={ButtonScreen}
-                initialParams={{id: 42}}
-                options={{
-                    headerTitle: 'Button Screen',
-                    headerStyle: {
-                        backgroundColor: Platform.OS === 'ios' ? 'white' : 'red'
-                    },
-                    headerTintColor: Platform.OS === 'ios' ? 'red' : 'white'
-                }}
+                name="FilterScreen"
+                component={FilterScreen}
+                options={({navigation, route}) => ({
+                    headerTitle: 'Filter Screen',
+                    headerRight: () => (
+                        <TouchableOpacity onPress={route.params.save}>
+                            <Ionicons name='save' size={26}/>
+                        </TouchableOpacity>
+                    ),
+                    headerLeft: () => (
+                        <View>
+                            <TouchableOpacity onPress={navigation.openDrawer}>
+                                <Ionicons name='menu' size={26}/>
+                            </TouchableOpacity>
+                        </View>
+                    )
+                })}
             />
         </Stack.Navigator>
     )
@@ -150,17 +170,17 @@ const Routes = () => {
         <NavigationContainer>
             <Drawer.Navigator initialRouteName="Home">
                 <Drawer.Screen
-                    name="Home"
+                    name="HomeDrawer"
                     component={MainBottomTabStack}
                     options={{
                         drawerLabel: 'Home !'
                     }}
                 />
                 <Drawer.Screen
-                    name="ButtonScreen"
-                    component={ButtonStack}
+                    name="FilterDrawer"
+                    component={FilterStack}
                     options={{
-                        drawerLabel: 'Button Screen !'
+                        drawerLabel: 'Filter Screen !'
                     }}
                 />
             </Drawer.Navigator>
