@@ -1,7 +1,8 @@
 import React from 'react';
 
-import {NavigationContainer} from "@react-navigation/native";
+import {View, Button, Platform} from "react-native";
 import {createStackNavigator} from "@react-navigation/stack";
+import {NavigationContainer} from "@react-navigation/native";
 
 import HomeScreen from "./screens/HomeScreen";
 import ListScreen from "./screens/ListScreen";
@@ -11,7 +12,6 @@ import PracticeFlexBox from "./screens/PracticeFlexBox";
 import ButtonScreen from "./screens/ButtonScreen";
 import PracticeStyle from "./screens/PracticeStyle";
 import MealsScreen from "./screens/MealsScreen";
-import {Platform} from "react-native";
 
 const Stack = createStackNavigator();
 
@@ -47,7 +47,23 @@ const Routes = () => {
                 <Stack.Screen
                     name="Markets"
                     component={Markets}
-                    options={{title: 'Markets'}}
+                    options={{
+                        title: 'Markets',
+                        headerRight: () => (
+                            <View style={{flexDirection: 'row'}}>
+                                <Button
+                                    title="Fav"
+                                    onPress={() => {
+                                    }}
+                                />
+                                <Button
+                                    title="Fav2"
+                                    onPress={() => {
+                                    }}
+                                />
+                            </View>
+                        )
+                    }}
                 />
                 <Stack.Screen
                     name="PracticeFlexBox"
