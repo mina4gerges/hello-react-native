@@ -14,6 +14,7 @@ const ListScreen = () => {
         <View style={styles.main}>
             <FlatList
                 // horizontal
+                // numColumns={2}
                 data={employeeNames}
                 keyExtractor={item => item.data}
                 // showsHorizontalScrollIndicator={false}
