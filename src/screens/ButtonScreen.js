@@ -1,11 +1,17 @@
 import React from 'react';
-import {Button, View, StyleSheet} from 'react-native';
+import {Button, View, StyleSheet, Text} from 'react-native';
 import ButtonComp from "../components/ButtonComp";
 
-const ButtonScreen = ({navigation}) => {
+const ButtonScreen = ({navigation, route}) => {
+
+    const {id} = route.params;
 
     return (
         <View style={styles.main}>
+
+            <Text>
+                {id}
+            </Text>
 
             <Button
                 title='Go Back'

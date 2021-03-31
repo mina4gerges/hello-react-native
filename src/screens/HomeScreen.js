@@ -20,7 +20,7 @@ const HomeScreen = ({navigation: {navigate}}) => {
             />
             <Button
                 title='Button Screen'
-                onPress={() => navigate('ButtonScreen')}
+                onPress={() => navigate('ButtonScreen', {id: 123})}
             />
             <Button
                 title='Practice Flex Box'
