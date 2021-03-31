@@ -1,10 +1,11 @@
 import React from 'react';
 
 import {Ionicons} from '@expo/vector-icons';
-import {View, Button, Platform} from "react-native";
+import {View, Button, Platform, TouchableOpacity} from "react-native";
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import {createDrawerNavigator} from "@react-navigation/drawer";
 
 import HomeScreen from "./screens/HomeScreen";
 import ListScreen from "./screens/ListScreen";
@@ -17,6 +18,7 @@ import MealsScreen from "./screens/MealsScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 const HomeStack = () => {
     return (
@@ -24,17 +26,16 @@ const HomeStack = () => {
             <Stack.Screen
                 name="Home"
                 component={HomeScreen}
-                options={{title: 'Home'}}
-            />
-            <Stack.Screen
-                name="ButtonScreen"
-                component={ButtonScreen}
-                options={{
-                    headerTitle: 'Button Screen', headerStyle: {
-                        backgroundColor: Platform.OS === 'ios' ? 'white' : 'red'
-                    },
-                    headerTintColor: Platform.OS === 'ios' ? 'red' : 'white'
-                }}
+                options={({navigation}) => ({
+                    title: 'Home',
+                    headerLeft: () => (
+                        <View>
+                            <TouchableOpacity onPress={navigation.openDrawer}>
+                                <Ionicons name='menu' size={26}/>
+                            </TouchableOpacity>
+                        </View>
+                    )
+                })}
             />
             <Stack.Screen
                 name="ListScreen"
@@ -93,36 +94,76 @@ const MarketStack = () => {
     )
 }
 
+const ButtonStack = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="ButtonScreen"
+                component={ButtonScreen}
+                initialParams={{id: 42}}
+                options={{
+                    headerTitle: 'Button Screen',
+                    headerStyle: {
+                        backgroundColor: Platform.OS === 'ios' ? 'white' : 'red'
+                    },
+                    headerTintColor: Platform.OS === 'ios' ? 'red' : 'white'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
+const MainBottomTabStack = () => {
+    return (
+        <Tab.Navigator
+            tabBarOptions={{
+                activeTintColor: 'tomato',
+                inactiveTintColor: 'gray',
+            }}>
+            <Tab.Screen
+                name="Home"
+                component={HomeStack}
+                options={{
+                    title: 'Home !',
+                    // tabBarColor: 'green',
+                    tabBarIcon: ({focused, color, size}) => {
+                        const iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
+                        return <Ionicons name={iconName} size={size} color={color}/>;
+                    },
+                }}/>
+            <Tab.Screen
+                name="Market"
+                component={MarketStack}
+                options={{
+                    title: 'Market !',
+                    tabBarIcon: ({focused, color, size}) => {
+                        const iconName = focused ? 'fast-food' : 'fast-food-outline';
+                        return <Ionicons name={iconName} size={size} color={color}/>;
+                    },
+                }}/>
+        </Tab.Navigator>
+    )
+}
+
 const Routes = () => {
     return (
         <NavigationContainer>
-            <Tab.Navigator
-                tabBarOptions={{
-                    activeTintColor: 'tomato',
-                    inactiveTintColor: 'gray',
-                }}>
-                <Tab.Screen
+            <Drawer.Navigator initialRouteName="Home">
+                <Drawer.Screen
                     name="Home"
-                    component={HomeStack}
+                    component={MainBottomTabStack}
                     options={{
-                        title: 'Home !',
-                        // tabBarColor: 'green',
-                        tabBarIcon: ({focused, color, size}) => {
-                            const iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
-                            return <Ionicons name={iconName} size={size} color={color}/>;
-                        },
-                    }}/>
-                <Tab.Screen
-                    name="Market"
-                    component={MarketStack}
+                        drawerLabel: 'Home !'
+                    }}
+                />
+                <Drawer.Screen
+                    name="ButtonScreen"
+                    component={ButtonStack}
                     options={{
-                        title: 'Market !',
-                        tabBarIcon: ({focused, color, size}) => {
-                            const iconName = focused ? 'fast-food' : 'fast-food-outline';
-                            return <Ionicons name={iconName} size={size} color={color}/>;
-                        },
-                    }}/>
-            </Tab.Navigator>
+                        drawerLabel: 'Button Screen !'
+                    }}
+                />
+            </Drawer.Navigator>
         </NavigationContainer>
     )
 }

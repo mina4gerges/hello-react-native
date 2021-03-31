@@ -7,10 +7,6 @@ const HomeScreen = ({navigation: {navigate}}) => {
     return (
         <View style={styles.main}>
             <Button
-                title='Market'
-                onPress={() => navigate('Markets')}
-            />
-            <Button
                 title='Screen Layout'
                 onPress={() => navigate('ScreenLayout')}
             />
