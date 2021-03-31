@@ -11,6 +11,7 @@ import PracticeFlexBox from "./screens/PracticeFlexBox";
 import ButtonScreen from "./screens/ButtonScreen";
 import PracticeStyle from "./screens/PracticeStyle";
 import MealsScreen from "./screens/MealsScreen";
+import {Platform} from "react-native";
 
 const Stack = createStackNavigator();
 
@@ -26,7 +27,12 @@ const Routes = () => {
                 <Stack.Screen
                     name="ButtonScreen"
                     component={ButtonScreen}
-                    options={{title: 'Button Screen'}}
+                    options={{
+                        headerTitle: 'Button Screen', headerStyle: {
+                            backgroundColor: Platform.OS === 'ios' ? 'white' : 'red'
+                        },
+                        headerTintColor: Platform.OS === 'ios' ? 'red' : 'white'
+                    }}
                 />
                 <Stack.Screen
                     name="ListScreen"
