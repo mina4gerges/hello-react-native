@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {View, Text, Switch, Alert, StyleSheet, TouchableOpacity} from "react-native";
+import {View, Text, Switch, Alert, StyleSheet, TouchableOpacity, Platform} from "react-native";
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {Ionicons} from "@expo/vector-icons";
 
@@ -64,13 +64,13 @@ export const screenOptions = () => {
         headerTitle: 'Filter Screen',
         headerRight: () => (
             <TouchableOpacity onPress={route?.params?.save}>
-                <Ionicons name='save' size={26}/>
+                <Ionicons name='save' size={26} color={Platform.OS === 'ios' ? 'black' : 'white'}/>
             </TouchableOpacity>
         ),
         headerLeft: () => (
             <View>
                 <TouchableOpacity onPress={navigation.openDrawer}>
-                    <Ionicons name='menu' size={26}/>
+                    <Ionicons name='menu' size={26} color={Platform.OS === 'ios' ? 'black' : 'white'}/>
                 </TouchableOpacity>
             </View>
         )

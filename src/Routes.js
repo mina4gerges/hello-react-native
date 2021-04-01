@@ -23,7 +23,7 @@ const Drawer = createDrawerNavigator();
 
 const defaultNavigationOptions = {
     headerStyle: {
-        backgroundColor: Platform.OS === 'ios' ? null : 'red',
+        backgroundColor: Platform.OS === 'ios' ? null : 'blue',
     },
     headerTitleStyle: {
         fontFamily: 'open-sans-bold'
