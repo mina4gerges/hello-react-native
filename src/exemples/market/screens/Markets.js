@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, View, StyleSheet} from 'react-native';
+import {FlatList, View, StyleSheet, Button} from 'react-native';
 
 import Market from "./Market";
 
@@ -57,5 +57,25 @@ const styles = StyleSheet.create({
         flex: 1
     }
 })
+
+export const screenOptions = () => {
+    return {
+        title: 'headerTitle',
+        headerRight: () => (
+            <View style={{flexDirection: 'row'}}>
+                <Button
+                    title="Fav"
+                    onPress={() => {
+                    }}
+                />
+                <Button
+                    title="Fav2"
+                    onPress={() => {
+                    }}
+                />
+            </View>
+        )
+    }
+}
 
 export default Markets;

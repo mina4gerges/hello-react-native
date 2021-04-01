@@ -1,8 +1,13 @@
 import React from 'react';
 import {Button, View, StyleSheet, Text} from 'react-native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+
 import ButtonComp from "../components/ButtonComp";
 
-const ButtonScreen = ({navigation, route}) => {
+const ButtonScreen = () => {
+
+    const route = useRoute();
+    const navigation = useNavigation();
 
     const {id} = route.params;
 

@@ -1,79 +1,77 @@
 import React from 'react';
 
 import {Ionicons} from '@expo/vector-icons';
-import {View, Button, Platform, TouchableOpacity} from "react-native";
+import {Platform} from "react-native";
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 
-import HomeScreen from "./screens/HomeScreen";
+import HomeScreen, {screenOptions as homeScreenOptions} from "./screens/HomeScreen";
 import ListScreen from "./screens/ListScreen";
 import ScreenLayout from "./screens/ScreenLayout";
-import Markets from "./exemples/market/screens/Markets";
+import Markets, {screenOptions as marketScreenOptions} from "./exemples/market/screens/Markets";
 import PracticeFlexBox from "./screens/PracticeFlexBox";
 import ButtonScreen from "./screens/ButtonScreen";
 import PracticeStyle from "./screens/PracticeStyle";
 import MealsScreen from "./screens/MealsScreen";
-import FilterScreen from "./screens/FilterScreen";
+import FilterScreen, {screenOptions as filterScreenOptions} from "./screens/FilterScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
+const defaultNavigationOptions = {
+    headerStyle: {
+        backgroundColor: Platform.OS === 'ios' ? null : 'red',
+    },
+    headerTitleStyle: {
+        fontFamily: 'open-sans-bold'
+    },
+    headerBackTileStyle: {
+        fontFamily: 'open-sans'
+    },
+    headerTintColor: Platform.OS === 'ios' ? 'blue' : 'red',
+}
+
 const HomeStack = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={defaultNavigationOptions}>
             <Stack.Screen
                 name="Home"
                 component={HomeScreen}
-                options={({navigation}) => ({
-                    title: 'Home',
-                    headerLeft: () => (
-                        <View>
-                            <TouchableOpacity onPress={navigation.openDrawer}>
-                                <Ionicons name='menu' size={26}/>
-                            </TouchableOpacity>
-                        </View>
-                    )
-                })}
+                options={homeScreenOptions}
             />
             <Stack.Screen
                 name="ListScreen"
                 component={ListScreen}
-                options={{title: 'List Screen'}}
+                options={{headerTitle: 'List Screen'}}
             />
             <Stack.Screen
                 name="ScreenLayout"
                 component={ScreenLayout}
-                options={{title: 'Screen Layout'}}
+                options={{headerTitle: 'Screen Layout'}}
             />
             <Stack.Screen
                 name="PracticeFlexBox"
                 component={PracticeFlexBox}
-                options={{title: 'Practice Flex Box'}}
+                options={{headerTitle: 'Practice Flex Box'}}
             />
             <Stack.Screen
                 name="PracticeStyle"
                 component={PracticeStyle}
-                options={{title: 'Practice Style'}}
+                options={{headerTitle: 'Practice Style'}}
             />
             <Stack.Screen
                 name="ButtonScreen"
                 component={ButtonScreen}
                 initialParams={{id: 42}}
-                options={{
-                    headerTitle: 'Button Screen',
-                    headerStyle: {
-                        backgroundColor: Platform.OS === 'ios' ? 'white' : 'red'
-                    },
-                    headerTintColor: Platform.OS === 'ios' ? 'red' : 'white'
-                }}
+                options={{headerTitle: 'Button Screen'}}
             />
             <Stack.Screen
                 name="MealsScreen"
                 component={MealsScreen}
-                options={{title: 'Meals Screen'}}
+                options={{headerTitle: 'Meals Screen'}}
             />
         </Stack.Navigator>
     )
@@ -81,53 +79,24 @@ const HomeStack = () => {
 
 const MarketStack = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={defaultNavigationOptions}>
             <Stack.Screen
                 name="Markets"
                 component={Markets}
-                options={{
-                    title: 'Markets',
-                    headerRight: () => (
-                        <View style={{flexDirection: 'row'}}>
-                            <Button
-                                title="Fav"
-                                onPress={() => {
-                                }}
-                            />
-                            <Button
-                                title="Fav2"
-                                onPress={() => {
-                                }}
-                            />
-                        </View>
-                    )
-                }}
+                options={marketScreenOptions}
             />
         </Stack.Navigator>
     )
 }
 
 const FilterStack = () => {
+
     return (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={defaultNavigationOptions}>
             <Stack.Screen
                 name="FilterScreen"
                 component={FilterScreen}
-                options={({navigation, route}) => ({
-                    headerTitle: 'Filter Screen',
-                    headerRight: () => (
-                        <TouchableOpacity onPress={route?.params?.save}>
-                            <Ionicons name='save' size={26}/>
-                        </TouchableOpacity>
-                    ),
-                    headerLeft: () => (
-                        <View>
-                            <TouchableOpacity onPress={navigation.openDrawer}>
-                                <Ionicons name='menu' size={26}/>
-                            </TouchableOpacity>
-                        </View>
-                    )
-                })}
+                options={filterScreenOptions}
             />
         </Stack.Navigator>
     )
@@ -145,7 +114,6 @@ const MainBottomTabStack = () => {
                 component={HomeStack}
                 options={{
                     title: 'Home !',
-                    // tabBarColor: 'green',
                     tabBarIcon: ({focused, color, size}) => {
                         const iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
                         return <Ionicons name={iconName} size={size} color={color}/>;

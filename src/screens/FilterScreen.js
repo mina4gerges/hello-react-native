@@ -1,17 +1,21 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {View, Text, Switch, Alert, StyleSheet} from "react-native";
+import {View, Text, Switch, Alert, StyleSheet, TouchableOpacity} from "react-native";
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {Ionicons} from "@expo/vector-icons";
 
-const FilterScreen = ({navigation}) => {
+const FilterScreen = () => {
+
+    const navigation = useNavigation();
 
     const [value, setValue] = useState(false);
 
     const sayHello = useCallback(() => Alert.alert('hello'), []);
 
     useEffect(() => {
-        navigation.setParams({
+        navigation.setOptions({
             save: sayHello
         })
-    }, [ sayHello])
+    }, [sayHello])
 
     return (
         <View style={styles.container}>
@@ -50,5 +54,27 @@ const styles = StyleSheet.create({
         margin: 5
     }
 })
+
+export const screenOptions = () => {
+
+    const navigation = useNavigation();
+    const route = useRoute();
+
+    return {
+        headerTitle: 'Filter Screen',
+        headerRight: () => (
+            <TouchableOpacity onPress={route?.params?.save}>
+                <Ionicons name='save' size={26}/>
+            </TouchableOpacity>
+        ),
+        headerLeft: () => (
+            <View>
+                <TouchableOpacity onPress={navigation.openDrawer}>
+                    <Ionicons name='menu' size={26}/>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+}
 
 export default FilterScreen;

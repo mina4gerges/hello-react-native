@@ -1,9 +1,15 @@
 import React from "react";
-import {Button, StyleSheet, View} from "react-native";
+import {Button, StyleSheet, TouchableOpacity, View} from "react-native";
+import {useNavigation} from '@react-navigation/native';
+
 import ListScreen from "./ListScreen";
 import ButtonScreen from "./ButtonScreen";
+import {Ionicons} from "@expo/vector-icons";
 
-const HomeScreen = ({navigation: {navigate}}) => {
+const HomeScreen = () => {
+
+    const {navigate} = useNavigation();
+
     return (
         <View style={styles.main}>
             <Button
@@ -40,5 +46,21 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
 })
+
+export const screenOptions = () => {
+
+    const navigation = useNavigation();
+
+    return {
+        headerTitle: 'Home',
+        headerLeft: () => (
+            <View>
+                <TouchableOpacity onPress={navigation.toggleDrawer}>
+                    <Ionicons name='menu' size={26}/>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+}
 
 export default HomeScreen;
