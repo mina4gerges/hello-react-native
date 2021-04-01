@@ -116,7 +116,7 @@ const FilterStack = () => {
                 options={({navigation, route}) => ({
                     headerTitle: 'Filter Screen',
                     headerRight: () => (
-                        <TouchableOpacity onPress={route.params.save}>
+                        <TouchableOpacity onPress={route?.params?.save}>
                             <Ionicons name='save' size={26}/>
                         </TouchableOpacity>
                     ),
@@ -165,25 +165,31 @@ const MainBottomTabStack = () => {
     )
 }
 
+const MainDrawer = () => {
+    return (
+        <Drawer.Navigator initialRouteName="Home">
+            <Drawer.Screen
+                name="HomeDrawer"
+                component={MainBottomTabStack}
+                options={{
+                    drawerLabel: 'Home !'
+                }}
+            />
+            <Drawer.Screen
+                name="FilterDrawer"
+                component={FilterStack}
+                options={{
+                    drawerLabel: 'Filter Screen !'
+                }}
+            />
+        </Drawer.Navigator>
+    )
+}
+
 const Routes = () => {
     return (
         <NavigationContainer>
-            <Drawer.Navigator initialRouteName="Home">
-                <Drawer.Screen
-                    name="HomeDrawer"
-                    component={MainBottomTabStack}
-                    options={{
-                        drawerLabel: 'Home !'
-                    }}
-                />
-                <Drawer.Screen
-                    name="FilterDrawer"
-                    component={FilterStack}
-                    options={{
-                        drawerLabel: 'Filter Screen !'
-                    }}
-                />
-            </Drawer.Navigator>
+            <MainDrawer/>
         </NavigationContainer>
     )
 }
