@@ -135,19 +135,33 @@ const MainBottomTabStack = () => {
 
 const MainDrawer = () => {
     return (
-        <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Navigator initialRouteName="Home" drawerContentOptions={{activeTintColor: 'red'}}>
             <Drawer.Screen
                 name="HomeDrawer"
                 component={MainBottomTabStack}
                 options={{
-                    drawerLabel: 'Home !'
+                    drawerLabel: 'Home !',
+                    drawerIcon: (props) => (
+                        <Ionicons
+                            size={props.size}
+                            color={props.color}
+                            name={Platform.OS === 'ios' ? 'ios-home' : 'home'}
+                        />
+                    )
                 }}
             />
             <Drawer.Screen
                 name="FilterDrawer"
                 component={FilterStack}
                 options={{
-                    drawerLabel: 'Filter Screen !'
+                    drawerLabel: 'Filter Screen !',
+                    drawerIcon: (props) => (
+                        <Ionicons
+                            size={props.size}
+                            color={props.color}
+                            name={Platform.OS === 'ios' ? 'ios-filter' : 'filter'}
+                        />
+                    )
                 }}
             />
         </Drawer.Navigator>
