@@ -19,11 +19,15 @@ const ButtonComp = ({label, onButtonPress}) => {
     //! Platform.Version >= 21 (for ex)
 
     return (
-        <TouchableOpacity style={{
-            ...styles.buttonBase,
-            ...Platform.select({android: styles.buttonAndroid, ios: styles.buttonIOS}),
-            width
-        }} activeOpacity={0.8} onPress={onButtonPress}>
+        <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={onButtonPress}
+            style={{
+                ...styles.buttonBase,
+                ...Platform.select({android: styles.buttonAndroid, ios: styles.buttonIOS}),
+                width
+            }}
+        >
             <Text>
                 {label}
             </Text>
