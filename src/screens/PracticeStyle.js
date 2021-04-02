@@ -46,8 +46,8 @@ const PracticeStyle = () => {
     return (
         <KeyboardAvoidingView
             style={{flex: 1}}
-            behavior={Platform.OS === 'ios' ? "padding" : null}
-            keyboardVerticalOffset={Platform.select({android: 500, ios: 100})}
+            behavior={Platform.OS === 'ios' ? "padding" : "height"}
+            // keyboardVerticalOffset={Platform.select({android: 500, ios: 100})}
         >
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <ScrollView style={styles.container}>
