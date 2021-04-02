@@ -16,12 +16,14 @@ import TextComp from "../components/TextComp";
 
 const PracticeStyle = () => {
 
+    const [name, setName] = useState('');
+    const [number, setNumber] = useState(0);
     const [height, setHeight] = useState(Dimensions.get('window').height);
 
     const onButtonPress = useCallback(() => {
         Alert.alert(
             "Hello I am title",
-            "Me, I am a message",
+            `You name is '${name}' and the number is '${number}'`,
             [{
                 text: 'Ok',
                 style: 'destructive',
@@ -45,7 +47,7 @@ const PracticeStyle = () => {
         <KeyboardAvoidingView
             style={{flex: 1}}
             behavior={Platform.OS === 'ios' ? "padding" : null}
-            keyboardVerticalOffset={Platform.select({android: 500, ios: 0})}
+            keyboardVerticalOffset={Platform.select({android: 500, ios: 100})}
         >
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <ScrollView style={styles.container}>
@@ -56,7 +58,10 @@ const PracticeStyle = () => {
                             ellipsizeMode='tail'
                             text='This text will never wrap into a new line, instead it will be cut off like this if it'
                         />
-                        <TextInputComp placeholder='Type your name here' keyboardType='numeric'/>
+                        <TextInputComp
+                            placeholder='Type your name here'
+                            onChange={(newName) => setName(newName)}
+                        />
                         <ButtonComp label='Show Alert' onButtonPress={onButtonPress}/>
                         <View style={styles.buttonGroup}>
                             <ButtonComp
@@ -73,7 +78,11 @@ const PracticeStyle = () => {
                         <ImageComp
                             uri={'https://media.cntraveler.com/photos/5e0671381334d900088b0a27/16:9/w_1600%2Cc_limit/Switzerland-winter-wonderlands-GettyImages-898687414.jpg'}
                         />
-                        <TextInputComp placeholder='Type your name here' keyboardType='numeric'/>
+                        <TextInputComp
+                            keyboardType='numeric'
+                            placeholder='Type a number here'
+                            onChange={(newNumber) => setNumber(newNumber)}
+                        />
                     </View>
                 </ScrollView>
             </TouchableWithoutFeedback>
