@@ -1,7 +1,9 @@
 {
   "expo": {
-    "name": "rn-starter",
-    "slug": "rn-starter",
+    "owner": "mina.gerges",
+    "name": "hello-react-native",
+    "slug": "hello-react-native",
+    "description": "This a startup project to learn react native basics using expo",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
