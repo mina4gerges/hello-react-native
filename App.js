@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, StatusBar} from 'react-native';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import {Provider} from "react-redux";
@@ -30,6 +30,13 @@ const App = () => {
 
     return (
         <Provider store={store}>
+            <StatusBar
+                animated={true}
+                hidden={false}
+                barStyle='dark-content'
+                backgroundColor="#61dafb"
+                showHideTransition='none'
+            />
             <View style={styles.app}>
                 <Routes/>
             </View>
