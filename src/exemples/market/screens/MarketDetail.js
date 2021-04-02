@@ -25,9 +25,6 @@ const MarketDetail = () => {
                 style={styles.img}
             >
                 <View style={styles.imgTexts}>
-                    <Text style={styles.title}>
-                        {title}
-                    </Text>
                     <Text style={styles.description}>
                         {description}
                     </Text>
@@ -49,12 +46,6 @@ const styles = StyleSheet.create({
     },
     imgTexts: {
         backgroundColor: 'rgba(0,0,0,0.6)',
-    },
-    title: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        color: 'white',
     },
     description: {
         textAlign: 'center',
