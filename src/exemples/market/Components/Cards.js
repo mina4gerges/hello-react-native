@@ -1,20 +1,22 @@
 import React from "react";
-import { FlatList } from "react-native";
+import {FlatList} from "react-native";
 
 import Card from "./Card";
 
-const Cards = ({ items }) => {
+const Cards = ({items}) => {
 
     return (
         <FlatList
             data={items}
             horizontal
-            keyExtractor={({ id }) => id}
+            keyExtractor={({id}) => id}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item: { image, title, description } }) => {
+            renderItem={({item: {id, image, title, description, marketType}}) => {
                 return <Card
+                    id={id}
                     image={image}
                     title={title}
+                    marketType={marketType}
                     description={description}
                 />
             }

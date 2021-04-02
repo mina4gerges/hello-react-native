@@ -7,14 +7,14 @@ import {NavigationContainer} from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 
-import HomeScreen, {screenOptions as homeScreenOptions} from "./screens/HomeScreen";
 import ListScreen from "./screens/ListScreen";
 import ScreenLayout from "./screens/ScreenLayout";
-import Markets, {screenOptions as marketScreenOptions} from "./exemples/market/screens/Markets";
 import PracticeFlexBox from "./screens/PracticeFlexBox";
 import ButtonScreen from "./screens/ButtonScreen";
 import PracticeStyle from "./screens/PracticeStyle";
 import MealsScreen from "./screens/MealsScreen";
+import MarketMain from "./exemples/market/screens/MarketMain";
+import HomeScreen, {screenOptions as homeScreenOptions} from "./screens/HomeScreen";
 import FilterScreen, {screenOptions as filterScreenOptions} from "./screens/FilterScreen";
 
 const Stack = createStackNavigator();
@@ -81,9 +81,9 @@ const MarketStack = () => {
     return (
         <Stack.Navigator screenOptions={defaultNavigationOptions}>
             <Stack.Screen
-                name="Markets"
-                component={Markets}
-                options={marketScreenOptions}
+                name="MarketMain"
+                component={MarketMain}
+                options={{headerShown: false}}
             />
         </Stack.Navigator>
     )
@@ -107,7 +107,11 @@ const MainBottomTabStack = () => {
         <Tab.Navigator
             tabBarOptions={{
                 activeTintColor: 'tomato',
-                inactiveTintColor: 'gray',
+                inactiveTintColor: 'white',
+                style: {
+                    borderTopWidth: 0,
+                    backgroundColor: '#212121'
+                }
             }}>
             <Tab.Screen
                 name="Home"

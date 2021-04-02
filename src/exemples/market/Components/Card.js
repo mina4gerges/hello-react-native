@@ -1,22 +1,28 @@
 import React from "react";
-import {Text, View, ImageBackground, StyleSheet} from 'react-native';
+import {Text, View, ImageBackground, StyleSheet, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
-const Card = ({image, title, description}) => {
+const Card = ({image, title, description, id,marketType}) => {
+
+    const navigation = useNavigation();
+
     return (
         <View style={styles.card}>
-            <ImageBackground
-                source={image}
-                style={styles.img}
-            >
-                <View style={styles.imgTexts}>
-                    <Text style={styles.title}>
-                        {title}
-                    </Text>
-                    <Text style={styles.description}>
-                        {description}
-                    </Text>
-                </View>
-            </ImageBackground>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.navigate('MarketDetail', {id, marketType})}>
+                <ImageBackground
+                    source={image}
+                    style={styles.img}
+                >
+                    <View style={styles.imgTexts}>
+                        <Text style={styles.title}>
+                            {title}
+                        </Text>
+                        <Text style={styles.description}>
+                            {description}
+                        </Text>
+                    </View>
+                </ImageBackground>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -26,7 +32,7 @@ const styles = StyleSheet.create({
         margin: 5,
         borderRadius: 15,
         shadowColor: "#000",
-        overflow:'hidden',
+        overflow: 'hidden',
         shadowOffset: {
             width: 0,
             height: 2,

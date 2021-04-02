@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     },
     marketTitle: {
         fontSize: 20,
-        color: 'black',
+        color: 'white',
         letterSpacing: 2,
         fontWeight: 'bold',
         textTransform: 'uppercase',
