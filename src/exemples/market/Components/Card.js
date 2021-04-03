@@ -2,22 +2,23 @@ import React from "react";
 import {Text, View, ImageBackground, StyleSheet, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const Card = ({image, title, description, id,marketType}) => {
+const Card = ({image, title, description, id, marketType}) => {
 
     const navigation = useNavigation();
 
     return (
         <View style={styles.card}>
-            <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.navigate('MarketDetail', {id, marketType})}>
+            <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={() => navigation.navigate('MarketDetail', {id, marketType})}>
                 <ImageBackground
                     source={image}
-                    style={styles.img}
-                >
+                    style={styles.img}>
                     <View style={styles.imgTexts}>
-                        <Text style={styles.title}>
+                        <Text style={styles.title} numberOfLines={1}>
                             {title}
                         </Text>
-                        <Text style={styles.description}>
+                        <Text style={styles.description} numberOfLines={1}>
                             {description}
                         </Text>
                     </View>
