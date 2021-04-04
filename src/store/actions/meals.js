@@ -8,7 +8,7 @@ export const removeMeals = id => {
 
 export const fetchMeals = () => {
     return async dispatch => {
-        const response = await fetch('')
+        const response = await fetch('https://hello-react-native-adee7-default-rtdb.firebaseio.com/products.json')
 
         let meals = await response.json();
 
@@ -22,7 +22,7 @@ export const addMeal = meal => {
     return async dispatch => {
 
         if (meal.name)
-            await fetch('', {
+            await fetch('https://hello-react-native-adee7-default-rtdb.firebaseio.com/products.json', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
