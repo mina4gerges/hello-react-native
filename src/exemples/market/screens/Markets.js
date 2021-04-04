@@ -21,6 +21,7 @@ const Markets = () => {
 
     useLayoutEffect(() => {
         navigation.setOptions({
+            headerTitle: 'Markets',
             headerTintColor: 'white',
             headerStyle: {
                 backgroundColor: '#212121',
