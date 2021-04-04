@@ -3,9 +3,10 @@ import React from 'react';
 import {Ionicons} from '@expo/vector-icons';
 import {Platform} from "react-native";
 import {createStackNavigator} from "@react-navigation/stack";
-import {NavigationContainer} from "@react-navigation/native";
+import {NavigationContainer, DefaultTheme, DarkTheme} from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createDrawerNavigator} from "@react-navigation/drawer";
+import {AppearanceProvider, useColorScheme} from "react-native-appearance";
 
 import ListScreen from "./screens/ListScreen";
 import ScreenLayout from "./screens/ScreenLayout";
@@ -173,10 +174,15 @@ const MainDrawer = () => {
 }
 
 const Routes = () => {
+
+    const scheme = useColorScheme();
+
     return (
-        <NavigationContainer>
-            <MainDrawer/>
-        </NavigationContainer>
+        <AppearanceProvider>
+            <NavigationContainer theme={scheme === 'dark' ? DarkTheme :DefaultTheme}>
+                <MainDrawer/>
+            </NavigationContainer>
+        </AppearanceProvider>
     )
 }
 
