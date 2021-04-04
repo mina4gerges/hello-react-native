@@ -1,9 +1,15 @@
 import React, {useLayoutEffect} from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute, useTheme} from '@react-navigation/native';
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import {useColorScheme} from "react-native-appearance";
 import {useSelector} from "react-redux";
 
 const MarketDetail = () => {
+
+    const {colors} = useTheme();
+
+    const scheme = useColorScheme();
+
     const navigation = useNavigation();
 
     const {params: {id, marketType}} = useRoute();
@@ -15,13 +21,13 @@ const MarketDetail = () => {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: `${title}`,
-            headerTintColor: 'white',
-            headerStyle: {
-                backgroundColor: '#212121',
-                shadowOffset: {
-                    height: 0,
-                },
-            },
+            // headerTintColor: 'white',
+            // headerStyle: {
+            //     backgroundColor: '#212121',
+            //     shadowOffset: {
+            //         height: 0,
+            //     },
+            // },
         })
     }, [])
 
@@ -31,11 +37,13 @@ const MarketDetail = () => {
                 source={image}
                 style={styles.img}
             >
-                <View style={styles.imgTexts}>
-                    <Text style={styles.description}>
-                        {description}
-                    </Text>
-                </View>
+                <Text style={{
+                    ...styles.description,
+                    color: colors.text,
+                    backgroundColor: scheme === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)'
+                }}>
+                    {description}
+                </Text>
             </ImageBackground>
         </View>
     )
@@ -44,19 +52,14 @@ const MarketDetail = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#2D2D2D',
     },
     img: {
         width: '100%',
         height: '100%',
         justifyContent: 'flex-end',
     },
-    imgTexts: {
-        backgroundColor: 'rgba(0,0,0,0.6)',
-    },
     description: {
         textAlign: 'center',
-        color: 'white',
     }
 })
 

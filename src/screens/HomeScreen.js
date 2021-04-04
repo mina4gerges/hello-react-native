@@ -1,6 +1,6 @@
 import React from "react";
-import {Button, Platform, StyleSheet, TouchableOpacity, View} from "react-native";
-import {useNavigation} from '@react-navigation/native';
+import {Button, StyleSheet, TouchableOpacity, View} from "react-native";
+import {useNavigation, useTheme} from '@react-navigation/native';
 
 import ListScreen from "./ListScreen";
 import ButtonScreen from "./ButtonScreen";
@@ -51,12 +51,14 @@ export const screenOptions = () => {
 
     const navigation = useNavigation();
 
+    const {colors} = useTheme();
+
     return {
         headerTitle: 'Home',
         headerLeft: () => (
             <View>
                 <TouchableOpacity onPress={navigation.toggleDrawer}>
-                    <Ionicons name='menu' size={26} color={Platform.OS === 'ios' ? 'black' : 'white'}/>
+                    <Ionicons name='menu' size={26} color={colors.text}/>
                 </TouchableOpacity>
             </View>
         )

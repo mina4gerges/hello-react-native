@@ -3,7 +3,7 @@ import React from 'react';
 import {Ionicons} from '@expo/vector-icons';
 import {Platform} from "react-native";
 import {createStackNavigator} from "@react-navigation/stack";
-import {NavigationContainer, DefaultTheme, DarkTheme} from "@react-navigation/native";
+import {NavigationContainer, DefaultTheme, DarkTheme, useTheme} from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import {AppearanceProvider, useColorScheme} from "react-native-appearance";
@@ -104,15 +104,14 @@ const FilterStack = () => {
 }
 
 const MainBottomTabStack = () => {
+
+    const {colors} = useTheme();
+
     return (
         <Tab.Navigator
             tabBarOptions={{
                 activeTintColor: 'tomato',
-                inactiveTintColor: 'white',
-                style: {
-                    borderTopWidth: 0,
-                    backgroundColor: '#212121'
-                }
+                inactiveTintColor: colors.text,
             }}>
             <Tab.Screen
                 name="Home"
@@ -179,7 +178,7 @@ const Routes = () => {
 
     return (
         <AppearanceProvider>
-            <NavigationContainer theme={scheme === 'dark' ? DarkTheme :DefaultTheme}>
+            <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
                 <MainDrawer/>
             </NavigationContainer>
         </AppearanceProvider>

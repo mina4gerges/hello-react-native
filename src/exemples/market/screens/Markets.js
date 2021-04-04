@@ -4,10 +4,12 @@ import {useDispatch, useSelector} from "react-redux";
 
 import Market from "./Market";
 import {fetchMarketItems} from "../store/actions/market";
-import {useNavigation} from "@react-navigation/native";
+import {useNavigation, useTheme} from "@react-navigation/native";
 import {Ionicons} from "@expo/vector-icons";
 
 const Markets = () => {
+
+    const {colors} = useTheme();
 
     const dispatch = useDispatch();
 
@@ -22,16 +24,13 @@ const Markets = () => {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: 'Markets',
-            headerTintColor: 'white',
-            headerStyle: {
-                backgroundColor: '#212121',
-                shadowOffset: {
-                    height: 0,
-                },
-            },
             headerLeft: () => (
                 <TouchableOpacity onPress={navigation.toggleDrawer}>
-                    <Ionicons name={Platform.OS === 'ios' ? 'ios-menu' : 'menu'} size={30} color='white'/>
+                    <Ionicons
+                        size={30}
+                        color={colors.text}
+                        name={Platform.OS === 'ios' ? 'ios-menu' : 'menu'}
+                    />
                 </TouchableOpacity>
             ),
             headerRight: () => (
@@ -60,7 +59,6 @@ const Markets = () => {
 const styles = StyleSheet.create({
     main: {
         flex: 1,
-        backgroundColor: '#2D2D2D'
     }
 })
 
