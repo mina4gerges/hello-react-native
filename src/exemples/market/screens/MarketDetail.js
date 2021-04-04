@@ -15,6 +15,13 @@ const MarketDetail = () => {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: `${title}`,
+            headerTintColor: 'white',
+            headerStyle: {
+                backgroundColor: '#212121',
+                shadowOffset: {
+                    height: 0,
+                },
+            },
         })
     }, [])
 
@@ -52,17 +59,5 @@ const styles = StyleSheet.create({
         color: 'white',
     }
 })
-
-export const screenOptions = () => {
-    return {
-        headerStyle: {
-            backgroundColor: '#212121',
-            shadowOffset: {
-                height: 0,
-            },
-        },
-        headerTintColor: 'white',
-    }
-}
 
 export default MarketDetail;
