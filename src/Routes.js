@@ -18,6 +18,7 @@ import MarketMain from "./exemples/market/screens/MarketMain";
 import HomeScreen, {screenOptions as homeScreenOptions} from "./screens/HomeScreen";
 import FilterScreen, {screenOptions as filterScreenOptions} from "./screens/FilterScreen";
 import ImagePickerComp from "./components/ImagePickerComp";
+import SaveDataToDBScreen from "./screens/SaveDataToDBScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -53,6 +54,11 @@ const HomeStack = () => {
                 name="ScreenLayout"
                 component={ScreenLayout}
                 options={{headerTitle: 'Screen Layout'}}
+            />
+            <Stack.Screen
+                name="SaveDataToDB"
+                component={SaveDataToDBScreen}
+                options={{headerTitle: 'Save Data To DB Screen'}}
             />
             <Stack.Screen
                 name="PracticeFlexBox"

@@ -21,6 +21,10 @@ const HomeScreen = () => {
                 onPress={() => navigate('ListScreen')}
             />
             <Button
+                title='Save Data To DB Screen'
+                onPress={() => navigate('SaveDataToDB')}
+            />
+            <Button
                 title='Image Picker'
                 onPress={() => navigate('ImagePicker')}
             />

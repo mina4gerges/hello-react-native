@@ -6,6 +6,7 @@ import {Provider} from "react-redux";
 
 import Routes from "./src/Routes";
 import store from "./src/store/store";
+import {init} from "./src/helpers/db";
 
 const fetchFonts = () => {
     return Font.loadAsync({
@@ -13,6 +14,15 @@ const fetchFonts = () => {
         'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
     })
 }
+
+// Init and create our db table
+init()
+    .then(() => {
+        console.log("Initialized database ");
+    })
+    .catch(err => {
+        console.log(`Initialized database failed: ${err}`);
+    })
 
 const App = () => {
 

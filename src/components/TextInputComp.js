@@ -1,15 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import {View, TextInput, Text, StyleSheet} from 'react-native';
+import {useTheme} from "@react-navigation/native";
 
 const TextInputComp = ({
+                           inputRef,
                            onChange,
                            errorMsg,
                            placeholder,
+                           onSubmitEditing,
                            returnKeyType = 'next',
                            autoCapitalize = 'none',
                            keyboardType = 'default',
-                           autoFocus = false
+                           autoFocus = false,
+                           blurOnSubmit = false,
                        }) => {
+
+    const {colors} = useTheme();
 
     const [textValue, setTextValue] = useState('');
 
@@ -22,17 +28,20 @@ const TextInputComp = ({
     return (
         <View>
             <TextInput
+                ref={inputRef}
                 autoCorrect={false}
                 returnKeyLabel='next'
-                style={styles.textInput}
                 onChangeText={onChangeText}
+                style={{...styles.textInput, borderColor: colors.border, color: colors.text}}
 
                 value={textValue}
                 autoFocus={autoFocus}
                 placeholder={placeholder}
+                blurOnSubmit={blurOnSubmit}
                 keyboardType={keyboardType}
                 returnKeyType={returnKeyType}
                 autoCapitalize={autoCapitalize}
+                onSubmitEditing={onSubmitEditing}
             />
             {
                 errorMsg ?
@@ -50,7 +59,6 @@ const styles = StyleSheet.create({
         width: 200,
         borderWidth: 1,
         paddingVertical: 3,
-        borderColor: 'black',
         paddingHorizontal: 10
     },
     errorMsgText: {
