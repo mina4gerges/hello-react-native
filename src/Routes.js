@@ -17,8 +17,8 @@ import MealsScreen from "./screens/MealsScreen";
 import MarketMain from "./exemples/market/screens/MarketMain";
 import HomeScreen, {screenOptions as homeScreenOptions} from "./screens/HomeScreen";
 import FilterScreen, {screenOptions as filterScreenOptions} from "./screens/FilterScreen";
-import ImagePickerComp from "./components/ImagePickerComp";
 import SaveDataToDBScreen from "./screens/SaveDataToDBScreen";
+import ImagePickerScreen from "./screens/ImagePickerScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -83,7 +83,7 @@ const HomeStack = () => {
             />
             <Stack.Screen
                 name="ImagePicker"
-                component={ImagePickerComp}
+                component={ImagePickerScreen}
                 options={{headerTitle: 'Image Picker Example'}}
             />
         </Stack.Navigator>
